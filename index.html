@@ -73,8 +73,27 @@
             </div>
         </div>
     </div>
-    <script>
-        
+    <script type="module">
+
+        const input = document.querySelector('#cep')
+        const button = document.getElementById('buscarBtn')
+
+        button.addEventListener('click', async (e) => {
+            const inputValue = input.value
+            const data = await fetchData(inputValue)
+            console.log(data)
+        })
+        /*input.addEventListener('input', (event) => {
+            console.log(event.target.value)
+        })
+*/
+
+        async function fetchData(cep) {
+            const data = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            const jsonData = await data.json()
+
+            return jsonData
+        }
     </script>
 </body>
 </html>
